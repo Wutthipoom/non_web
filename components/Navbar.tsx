@@ -1,7 +1,5 @@
 "use client";
-
 import Link from "next/link";
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -37,13 +35,12 @@ export default function Navbar() {
         router.refresh();
     }
 
-
     return (
         <nav className="navbar">
             <div className="nav-container">
 
                 <Link href="/" className="logo">
-                    nongnon shop
+                    ROBOT SHOP
                 </Link>
 
                 <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
@@ -54,12 +51,17 @@ export default function Navbar() {
                     <li>
                         <Link href="/" >Home</Link>
                     </li>
-
                     <li>
                         <Link href="/about">About</Link>
                     </li>
                     <li>
                         <Link href="/contact">Contact</Link>
+                    </li>
+                    <li>
+                        <Link href="/products">สินค้า</Link>
+                    </li>
+                    <li>
+                        <Link href="/blogs">บทความ</Link>
                     </li>
 
                     {user && (
@@ -70,16 +72,15 @@ export default function Navbar() {
 
                     {user?.role === "admin" && (
                         <>
-                        <li>
-                            <Link href="/admin/users">Admin</Link>
-                        </li>
-                                  <li>
-                            <Link href="/admin/products">Product</Link>
-                        </li>
-                        <li>
-                            <Link href="/admin/categories">category</Link>
-                        </li>
-
+                            <li>
+                                <Link href="/admin/blogs">เพิ่มบทความ</Link>
+                            </li>
+                            <li>
+                                <Link href="/admin/categories">เพิ่มประเภทสินค้า</Link>
+                            </li>
+                            <li>
+                                <Link href="/admin/products">เพิ่มสินค้า</Link>
+                            </li>
                         </>
                     )}
 
@@ -89,16 +90,13 @@ export default function Navbar() {
                                 <Link href="/login">Login</Link>
                             </li>
                             <li>
-                                <Link href="/register">Register</Link>
+                                <Link href="/register"> Register </Link>
                             </li>
                         </>
                     ) : (
                         <>
-                            <li className="user-info">
-                                {user.name} {user.role}
-                            </li>
                             <li>
-                                <Link href="/profile">Profile</Link>
+                                <Link href="/profile"> {user.name} ({user.role}) </Link>
                             </li>
                             <li>
                                 <button onClick={logout} className="btn-logout">
@@ -107,7 +105,6 @@ export default function Navbar() {
                             </li>
                         </>
                     )}
-
 
                 </ul>
             </div>
